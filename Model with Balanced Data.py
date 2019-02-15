@@ -61,7 +61,7 @@ svm_model.fit(X_under_sample, y_under_sample)
 
 #KNN
 param_grid = {'n_neighbors':range(1,50)}
-grid = GridSearchCV(KNeighborsClassifier(),param_grid,refit=True,verbose=3)
+grid = GridSearchCV(KNeighborsClassifier(),param_grid,refit=True,verbose=1)
 grid.fit(X_under_sample, y_under_sample)
 print(grid.best_params_)
 knn = grid.best_estimator_
@@ -72,7 +72,7 @@ dtree.fit(X_under_sample, y_under_sample)
 
 #Random Forest
 param = {'n_estimators':range(1,100)}
-grid = GridSearchCV(RandomForestClassifier(),param,refit=True,verbose=3)
+grid = GridSearchCV(RandomForestClassifier(),param,refit=True,verbose=1)
 grid.fit(X_under_sample, y_under_sample)
 print(grid.best_params_)
 rfc = grid.best_estimator_
@@ -129,4 +129,9 @@ for model in models:
     predictions.append(pred)
     get_cf_matrix(y_test, pred, model)
 
-
+#AUC of Random Forest Model
+from sklearn.metrics import classification_report    
+rfc_pred = models[-1].predict(X_test)
+print(classification_report(y_test, rfc_pred))
+from sklearn.metrics import roc_auc_score
+print(roc_auc_score(y_test,rfc_pred))
