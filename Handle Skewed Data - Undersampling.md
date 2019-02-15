@@ -24,7 +24,7 @@ log_pred = logmodel.predict(X_test)
 print(confusion_matrix(y_test, log_pred))
 print(classification_report(y_test, log_pred))
 ```
-![LR-with skewed data](https://github.com/Yinstinctive/Credit_Card_Fraud_Detection/blob/master/image/LR-with skewed data.png)<br>
+![LR with skewed data](https://github.com/Yinstinctive/Credit_Card_Fraud_Detection/blob/master/image/LR-with%20skewed%20data.png)<br>
 The model misclassified 48 frauds. Let's check out if it could get better after balancing the data.<br>
 
 **Under Sampling**<br>
